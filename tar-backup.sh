@@ -30,6 +30,11 @@ handle_options() {
 			handle_help
 			exit 1
 		fi
+		if [[ ! -d $2 ]]; then
+                        echo "Dist $2 must be an existing directory"
+                        exit 1
+                fi
+
 		DIST=$2
 		shift
 		;;
@@ -50,7 +55,10 @@ handle_options() {
 		fi
 		local arr_index=0
 		while is_valid_argument $@; do
-			# Add test file check
+			if [[ ! -e $2 ]]; then
+				echo "File $2 does not exist"
+				exit 1
+			fi
 			FILES[$arr_index]=$2
 			((arr_index++))
 			shift
