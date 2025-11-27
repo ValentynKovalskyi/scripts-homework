@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIST="~/backups/"
+DIST=~/backups
 BACKUP_NAME="backup"
 TIMESTAMP=$(date -u +%Y_%m_%d_%H_%M_%S)
 FILES=()
@@ -82,3 +82,8 @@ if [[ ${#FILES[@]} -eq 0 ]]; then
 	handle_help
 	exit 1
 fi
+
+tar czf "${DIST}/${BACKUP_NAME}_${TIMESTAMP}.tar.gz" "${FILES[@]}"
+
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+echo "Backup successfully saved in ${DIST}/${BACKUP_NAME}_${TIMESTAMP}.tar.gz"
