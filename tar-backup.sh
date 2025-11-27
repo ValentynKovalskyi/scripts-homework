@@ -6,7 +6,7 @@ TIMESTAMP=$(date -u +%Y_%m_%d_%H_%M_%S)
 FILES=()
 
 handle_help() {
-	echo "Usage: tar-backup [OPTIONS]" 
+	echo "Usage: tar-backup [-f | --files] file1 file2 ... [OPTIONS]" 
 	echo "-h | --help	Print usage"
 	echo "-f | --files	Specify target files"
 	echo "-d | --dist	Specify distenation directory (default: ~/backups/)"
@@ -76,3 +76,9 @@ handle_options() {
 }
 
 handle_options $@
+
+if [[ ${#FILES[@]} -eq 0 ]]; then
+	echo "Must specify at least one file or directory for backup"
+	handle_help
+	exit 1
+fi
