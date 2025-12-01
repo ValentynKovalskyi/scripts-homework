@@ -21,7 +21,7 @@ if [[ ! -d $LOG_DIR ]]; then
 fi
 
 if [[ $# -eq 2 ]]; then 
-	if [[ "$2" =~ ^[0-9]+$ ]]; then
+	if [[ ! "$2" =~ ^[0-9]+$ ]]; then
 	echo "$2 is not the number"
 	usage
 	exit 1
